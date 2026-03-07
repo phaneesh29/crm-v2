@@ -7,7 +7,6 @@ const { Pool } = pg;
 
 const pool = new Pool({
     connectionString: config.databaseUrl,
-    // Production pool settings
     max: 20,
     idleTimeoutMillis: 30000,
     connectionTimeoutMillis: 2000,

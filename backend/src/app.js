@@ -3,6 +3,7 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import compression from "compression";
+import cookieParser from "cookie-parser";
 import config from "./config/index.js";
 import { generalLimiter } from "./middlewares/rateLimiter.js";
 import errorHandler from "./middlewares/errorHandler.js";
@@ -10,19 +11,19 @@ import routes from "./routes/index.js";
 
 const app = express();
 
+app.disable("x-powered-by");
 app.set("trust proxy", true);
 
 app.use(helmet());
 
-app.use(
-    cors({
-        origin: config.corsOrigin,
-        credentials: true,
-    })
-);
+app.use(cors({
+    origin: config.corsOrigin,
+    credentials: true,
+}));
 
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
+app.use(cookieParser());
 
 app.use(compression());
 
