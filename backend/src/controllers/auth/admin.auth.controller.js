@@ -5,8 +5,6 @@ import { db } from "../../db/index.js";
 import { users } from "../../db/schema.js";
 import config from "../../config/index.js";
 
-const SALT_ROUNDS = 10;
-
 const login = async (req, res, next) => {
     try {
         const { email, password } = req.body;
@@ -109,7 +107,7 @@ const changePassword = async (req, res, next) => {
             });
         }
 
-        const newPasswordHash = await bcrypt.hash(newPassword, SALT_ROUNDS);
+        const newPasswordHash = await bcrypt.hash(newPassword, config.saltRounds);
 
         await db.update(users).set({ passwordHash: newPasswordHash }).where(eq(users.id, req.admin.id));
 

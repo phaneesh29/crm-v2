@@ -24,6 +24,8 @@ const config = {
 
     adminEmail: process.env.ADMIN_EMAIL || "admin@example.com",
     adminPassword: process.env.ADMIN_PASSWORD || "admin123",
+
+    saltRounds: parseInt(process.env.SALT_ROUNDS, 10) || 10,
 };
 
 export default config;

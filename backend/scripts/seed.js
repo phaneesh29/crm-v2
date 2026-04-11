@@ -16,7 +16,7 @@ async function seed() {
         }
 
         const adminEmail = config.adminEmail;
-        const passwordHash = await bcrypt.hash(config.adminPassword, 10);
+        const passwordHash = await bcrypt.hash(config.adminPassword, config.saltRounds);
 
         await db.insert(users).values({
             firstName: "System",

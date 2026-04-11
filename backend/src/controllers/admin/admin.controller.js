@@ -2,8 +2,7 @@ import bcrypt from "bcrypt";
 import { eq, ne } from "drizzle-orm";
 import { db } from "../../db/index.js";
 import { users } from "../../db/schema.js";
-
-const SALT_ROUNDS = 10;
+import config from "../../config/index.js";
 
 const getAllAdmins = async (req, res, next) => {
     try {
@@ -88,7 +87,7 @@ const createAdmin = async (req, res, next) => {
             });
         }
 
-        const passwordHash = await bcrypt.hash(password, SALT_ROUNDS);
+        const passwordHash = await bcrypt.hash(password, config.saltRounds);
 
         const [newAdmin] = await db
             .insert(users)
