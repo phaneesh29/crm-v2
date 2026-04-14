@@ -5,8 +5,11 @@ import * as schema from "./schema.js";
 
 const { Pool } = pg;
 
+const isNeonConnection = config.databaseUrl?.includes("neon.tech");
+
 const pool = new Pool({
     connectionString: config.databaseUrl,
+    ssl: isNeonConnection ? { rejectUnauthorized: false } : undefined,
     max: 20,
     idleTimeoutMillis: 30000,
     connectionTimeoutMillis: 2000,

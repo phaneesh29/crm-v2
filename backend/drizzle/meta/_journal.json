@@ -8,6 +8,20 @@
       "when": 1772873074072,
       "tag": "0000_glamorous_jane_foster",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1776167037404,
+      "tag": "0001_regular_peter_quill",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1776169179306,
+      "tag": "0002_milky_nightcrawler",
+      "breakpoints": true
     }
   ]
 }
