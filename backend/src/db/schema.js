@@ -37,3 +37,11 @@ export const leads = pgTable("leads", {
     updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().$onUpdate(() => new Date()).notNull(),
     deletedAt: timestamp("deleted_at", { withTimezone: true }),
 });
+
+export const leadMetadata = pgTable("lead_metadata", {
+    id: uuid("id").defaultRandom().primaryKey(),
+    leadId: uuid("lead_id").notNull().references(() => leads.id, { onDelete: "cascade" }),
+    key: varchar("key", { length: 255 }).notNull(),
+    value: text("value"),
+    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+});
